@@ -9,14 +9,16 @@ jobs:
       - setup_remote_docker
       - run:
           name: Install docker-compose
-          command: apk --update add py2-pip
-                   /usr/bin/pip2 install docker-compose
-                   docker-compose --version
+          command: |
+            apk --update add py2-pip
+            /usr/bin/pip2 install docker-compose
+            docker-compose --version
       - run:
           name: Start Container
-          command: docker-compose up -d
-                   docker-compose ps
+          command: |
+            docker-compose up -d
+            docker-compose ps
       - run:
           name: Let client talk to server
-          command: docker-compose run client
-                     psql -h server -p 5432 -U postgres -c "\l"
+          command: |
+            docker-compose run client psql -h server -p 5432 -U postgres -c "\l"
