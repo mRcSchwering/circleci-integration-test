@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Install docker-compose
           command: apk --update add py2-pip && \
-                   pip install docker-compose && \
+                   pip2 install docker-compose && \
                    docker-compose --version
       - run:
           name: Start Container
@@ -19,4 +19,4 @@ jobs:
       - run:
           name: Let client talk to server
           command: docker-compose run client \
-                   psql -h server -p 5432 -U postgres -c "\l"
+                     psql -h server -p 5432 -U postgres -c "\l"

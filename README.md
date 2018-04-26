@@ -1,6 +1,6 @@
 # circleci-integration-test
 
-**start docker-git-alpine container mounting docker socket and pwd**
+**start docker-git container mounting docker socket and pwd**
 
 ```
 sudo docker run --rm -it \
@@ -13,7 +13,7 @@ sudo docker run --rm -it \
 
 ```
 apk --update add py2-pip
-pip install docker-compose
+pip2 install docker-compose
 ```
 
 **start server and client (docker-in-docker)**
