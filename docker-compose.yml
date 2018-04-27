@@ -1,20 +1,11 @@
 version: '2'
-
 services:
   server:
     image: postgres:9.5.12-alpine
-    networks:
-      - internal
     expose:
       - '5432'
   client:
     build:
       context: .
-    networks:
-      - internal
     depends_on:
         - server
-
-networks:
-  internal:
-    driver: bridge

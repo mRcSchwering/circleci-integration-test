@@ -11,14 +11,14 @@ jobs:
           name: Install docker-compose
           command: |
             apk --update add py2-pip
-            /usr/bin/pip2 install docker-compose
+            pip install docker-compose
             docker-compose --version
       - run:
           name: Start Container
           command: |
-            docker-compose up -d
+            docker-compose -p circleci-integration-test up -d
             sleep 5
-            docker-compose ps
+            docker-compose -p circleci-integration-test ps
       - run:
           name: Let client talk to server
           command: |
