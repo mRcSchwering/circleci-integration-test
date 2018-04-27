@@ -1,9 +1,10 @@
 version: 2
 jobs:
-
   build:
     docker:
       - image: docker:18.03.0-ce-git
+    environment:
+      project: "circleci-integration-test"
     steps:
       - checkout
       - setup_remote_docker
@@ -16,10 +17,10 @@ jobs:
       - run:
           name: Start Container
           command: |
-            docker-compose -p circleci-integration-test up -d
+            docker-compose -p "$project" up -d
             sleep 5
-            docker-compose -p circleci-integration-test ps
+            docker-compose -p "$project" ps
       - run:
           name: Let client talk to server
           command: |
-            docker-compose run client psql -h server -p 5432 -U postgres -c "\l"
+            docker-compose -p "$project" run client psql -h server -p 5432 -U postgres -c "\l"
