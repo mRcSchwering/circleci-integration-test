@@ -17,6 +17,7 @@ jobs:
           name: Start Container
           command: |
             docker-compose up -d
+            sleep 5
             docker-compose ps
       - run:
           name: Let client talk to server
